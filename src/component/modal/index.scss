@@ -1,0 +1,106 @@
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+@keyframes modal-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  animation-name: modal-fade-in;
+  animation-duration: 0.3s;
+  opacity: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > .modal {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    animation-name: modal-slide-up;
+    animation-duration: 0.3s;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    overflow: hidden;
+
+    .header {
+      padding: 1.5rem;
+      background: transparent;
+      z-index: 7;
+      .close-button-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        .close-button {
+          position: relative;
+          z-index: 3;
+          width: 1.2rem;
+          height: 1.2rem;
+          cursor: pointer;
+          transition: transform 0.2s ease;
+          border-radius: 50%;
+          background: rgba(0, 0, 0, 0.05);
+          
+          &:hover {
+            transform: rotate(90deg);
+            background: rgba(0, 0, 0, 0.1);
+          }
+          
+          &::before {
+            content: "";
+            width: 0.12rem;
+            height: 60%;
+            background-color: var(--dark-color);
+            position: absolute;
+            transform: rotate(45deg);
+            top: 20%;
+            left: 50%;
+            border-radius: 2px;
+          }
+          &::after {
+            content: "";
+            width: 0.12rem;
+            height: 60%;
+            background-color: var(--dark-color);
+            position: absolute;
+            transform: rotate(135deg);
+            top: 20%;
+            left: 50%;
+            border-radius: 2px;
+          }
+        }
+      }
+    }
+    .content {
+      max-height: 80vh;
+      overflow: auto;
+    }
+  }
+}
