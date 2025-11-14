@@ -5,7 +5,7 @@
   "author": "seongsik-choi",
   "license": "MIT",
   "private": true,
-  "homepage": "https://seongsik-choi.github.io/wedding-invitation",
+  "homepage": "https://seongsik-choi.github.io/invitation-wedding",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
