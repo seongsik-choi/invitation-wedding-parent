@@ -16,12 +16,15 @@ import {
 const distFolder = "build"
 
 let base = "/"
+let baseUrl = ""
 
 try {
   const url = new URL(pkg.homepage)
   base = url.pathname
+  baseUrl = pkg.homepage.endsWith("/") ? pkg.homepage : pkg.homepage + "/"
 } catch (e) {
   base = pkg.homepage || "/"
+  baseUrl = (pkg.homepage || "").endsWith("/") ? (pkg.homepage || "") : (pkg.homepage || "") + "/"
 }
 
 // https://vite.dev/config/
@@ -35,6 +38,7 @@ export default defineConfig({
           GROOM_FULLNAME,
           BRIDE_FULLNAME,
           DESCRIPTION: `${WEDDING_DATE.format(WEDDING_DATE_FORMAT)} ${LOCATION}`,
+          BASE_URL: baseUrl,
         },
       },
     }),

@@ -11,9 +11,14 @@
       property="og:title"
       content="<%= GROOM_FULLNAME %> ❤️ <%= BRIDE_FULLNAME %> 결혼합니다."
     />
-    <meta property="og:image" content="/preview_image.png" />
-    <meta property="og:url" content="%BASE_URL%/" />
+    <meta property="og:image" content="<%= BASE_URL %>preview_image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:url" content="<%= BASE_URL %>" />
     <meta property="og:description" content="<%= DESCRIPTION %>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="<%= BASE_URL %>preview_image.png" />
     <link rel="preload" href="/MapoGoldenPierA.woff" as="font" crossorigin />
     <link rel="preload" href="/AlluraRegular.woff" as="font" crossorigin />
     <link rel="manifest" href="/manifest.json" />
