@@ -73,7 +73,7 @@ export const GROOM_INFO = [
     relation: "신랑 아버지",
     name: GROOM_FATHER,
     phone: "010-6310-3494",
-    account: "신한은행 000000000000",
+    account: "농협은행 14202191534",
   },
   {
     relation: "신랑 어머니",
