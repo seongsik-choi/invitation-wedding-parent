@@ -9,14 +9,6 @@ export const Information1 = () => {
   return (
     <>
       <h2 className="english">Information</h2>
-      <div className="info-card">
-        <div className="label">식사 안내</div>
-        <div className="content">
-          식사시간: 14시 30분 ~ 17시 00분
-          <br />
-          장소: (예식 전 식사 2F/ 예식 후 식사 3F)
-        </div>
-      </div>
     </>
   )
 }

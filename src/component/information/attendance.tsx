@@ -47,7 +47,7 @@ export const AttendanceInfo = () => {
             <br />
             모든 분들을 귀하게 모실 수 있도록
             <br />
-            참석 및 식사 여부를 미리 여쭙고자 합니다.
+            참석 여부를 미리 여쭙고자 합니다.
             <div className="break" />
             부담없이 알려주시면
             <br />
@@ -112,17 +112,12 @@ export const AttendanceInfo = () => {
 
 const AttendanceModalContent = () => {
   const { closeModal } = useModal()
-  const inputRef = useRef({ side: {}, meal: {} }) as React.RefObject<{
+  const inputRef = useRef({ side: {} }) as React.RefObject<{
     side: {
       groom: HTMLInputElement
       bride: HTMLInputElement
     }
     name: HTMLInputElement
-    meal: {
-      yes: HTMLInputElement
-      undecided: HTMLInputElement
-      no: HTMLInputElement
-    }
     count: HTMLInputElement
   }>
   const [loading, setLoading] = useState(false)
@@ -141,13 +136,6 @@ const AttendanceModalContent = () => {
               ? "bride"
               : null
           const name = inputRef.current.name.value
-          const meal = inputRef.current.meal.yes.checked
-            ? "yes"
-            : inputRef.current.meal.undecided.checked
-              ? "undecided"
-              : inputRef.current.meal.no.checked
-                ? "no"
-                : null
           const count = Number(inputRef.current.count.value)
 
           if (!side) {
@@ -161,11 +149,6 @@ const AttendanceModalContent = () => {
           }
           if (name.length > RULES.name.maxLength) {
             alert(`성함을 ${RULES.name.maxLength}자 이하로 입력해주세요.`)
-            return
-          }
-
-          if (!meal) {
-            alert("식사 여부를 선택해주세요.")
             return
           }
 
@@ -183,7 +166,7 @@ const AttendanceModalContent = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ side, name, meal, count }),
+            body: JSON.stringify({ side, name, count }),
           })
           if (!res.ok) {
             throw new Error(res.statusText)
@@ -244,50 +227,6 @@ const AttendanceModalContent = () => {
               inputRef.current.name = ref as HTMLInputElement
             }}
           />
-        </div>
-      </div>
-
-      <div className="input-group">
-        <div className="label">식사</div>
-        <div className="radio-input">
-          <label>
-            <input
-              disabled={loading}
-              type="radio"
-              name="meal"
-              value="yes"
-              ref={(ref) => {
-                inputRef.current.meal.yes = ref as HTMLInputElement
-              }}
-            />
-            <span>예정</span>
-          </label>
-
-          <label>
-            <input
-              disabled={loading}
-              type="radio"
-              name="meal"
-              value="undecided"
-              ref={(ref) => {
-                inputRef.current.meal.undecided = ref as HTMLInputElement
-              }}
-            />
-            <span>미정</span>
-          </label>
-
-          <label>
-            <input
-              disabled={loading}
-              type="radio"
-              name="meal"
-              value="no"
-              ref={(ref) => {
-                inputRef.current.meal.no = ref as HTMLInputElement
-              }}
-            />
-            <span>불참</span>
-          </label>
         </div>
       </div>
 
