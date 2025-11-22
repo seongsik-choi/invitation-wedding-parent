@@ -3,7 +3,6 @@ import { STATIC_ONLY } from "../../env"
 import { Button } from "../button"
 import { LazyDiv } from "../lazyDiv"
 import { useModal } from "../modal"
-import { AttendanceInfo } from "./attendance"
 
 export const Information1 = () => {
   return (
@@ -82,59 +81,6 @@ export const Information2 = () => {
         >
           신랑측 계좌번호 보기
         </Button>
-        <div className="break" />
-        <Button
-          style={{ width: "100%" }}
-          onClick={() => {
-            openModal({
-              className: "donation-modal",
-              closeOnClickBackground: true,
-              header: <div className="title">신부측 계좌번호</div>,
-              content: (
-                <>
-                  {BRIDE_INFO.filter(({ account }) => !!account).map(
-                    ({ relation, name, account }) => (
-                      <div className="account-info" key={relation}>
-                        <div>
-                          <div className="name">
-                            <span className="relation">{relation}</span> {name}
-                          </div>
-                          <div>{account}</div>
-                        </div>
-                        <Button
-                          className="copy-button"
-                          onClick={async () => {
-                            if (account) {
-                              try {
-                                navigator.clipboard.writeText(account)
-                                alert(account + "\n복사되었습니다.")
-                              } catch {
-                                alert("복사에 실패했습니다.")
-                              }
-                            }
-                          }}
-                        >
-                          복사하기
-                        </Button>
-                      </div>
-                    ),
-                  )}
-                </>
-              ),
-              footer: (
-                <Button
-                  buttonStyle="style2"
-                  className="bg-light-grey-color text-dark-color"
-                  onClick={closeModal}
-                >
-                  닫기
-                </Button>
-              ),
-            })
-          }}
-        >
-          신부측 계좌번호 보기
-        </Button>
       </div>
     </>
   )
@@ -158,7 +104,6 @@ export const Information = () => {
     <LazyDiv className="card information">
       <Information1 />
       <Information2 />
-      <AttendanceInfo />
     </LazyDiv>
   )
 }
